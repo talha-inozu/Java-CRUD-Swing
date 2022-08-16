@@ -125,7 +125,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-      AddStudentPanel panel = new AddStudentPanel(students);
+      AddStudentPanel panel = new AddStudentPanel(studentManager);
       jPanel2.removeAll();
       jPanel2.repaint();
       jPanel2.revalidate();

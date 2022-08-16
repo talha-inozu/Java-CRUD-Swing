@@ -34,8 +34,7 @@ public class Student {
     @Column(name= "country")
     String coutry;
 
-    public Student(int id, int schoolNo, double overallGrade, String name, String department, String coutry) {
-        this.id = id;
+    public Student(int schoolNo, double overallGrade, String name, String department, String coutry) {
         this.schoolNo = schoolNo;
         this.overallGrade = overallGrade;
         this.name = name;

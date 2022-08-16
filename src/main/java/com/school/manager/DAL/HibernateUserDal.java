@@ -15,47 +15,64 @@ import org.hibernate.cfg.Configuration;
  *
  * @author talme
  */
-public class HibernateUserDal implements IUserDal{
-        private SessionFactory factory = new Configuration()
-                    .configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(User.class)
-                    .buildSessionFactory();
-    
-    private Session session = factory.getCurrentSession();
+public class HibernateUserDal implements IUserDal {
+
+    private SessionFactory factory = new Configuration()
+            .configure("hibernate.cfg.xml")
+            .addAnnotatedClass(User.class)
+            .buildSessionFactory();
+
     @Override
     public List<User> getAll() {
+        Session session = factory.getCurrentSession();
         session.beginTransaction();
         List<User> users = session.createQuery("from Users").getResultList();
+        session.close();
+
         return users;
     }
 
     @Override
     public void add(User user) {
-                session.beginTransaction();
+        Session session = factory.getCurrentSession();
+
+        session.beginTransaction();
         session.saveOrUpdate(user);
-        session.getTransaction().commit(); 
+        session.getTransaction().commit();
+        session.close();
+
     }
 
     @Override
     public void update(User user) {
-                session.beginTransaction();
+        Session session = factory.getCurrentSession();
+
+        session.beginTransaction();
         session.saveOrUpdate(user);
-        session.getTransaction().commit(); 
+        session.getTransaction().commit();
+        session.close();
+
     }
 
     @Override
     public void delete(User user) {
+        Session session = factory.getCurrentSession();
+
         session.beginTransaction();
-        User userToDelete = session.get(User.class,user.getId());
+        User userToDelete = session.get(User.class, user.getId());
         session.delete(userToDelete);
         session.getTransaction().commit();
+        session.close();
+
     }
 
     @Override
     public User getById(int id) {
-               session.beginTransaction();
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
         User user = session.get(User.class, id);
+        session.close();
         return user;
     }
-    
+
 }

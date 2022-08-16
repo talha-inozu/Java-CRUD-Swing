@@ -21,24 +21,35 @@ public class HibernateStudentDal implements IStudentDal{
                     .addAnnotatedClass(Student.class)
                     .buildSessionFactory();
     
-    private Session session = factory.getCurrentSession();
+    
+
+    public HibernateStudentDal() {
+     
+    }
+    
     
     @Override
     public List<Student> getAll() {
+        Session session = factory.getCurrentSession();
         session.beginTransaction();
         List<Student> students = session.createQuery("from Peoples").getResultList();
+        session.getTransaction().commit();
         return students;
     }
 
     @Override
     public void add(Student student) {
+        Session session = factory.getCurrentSession();
         session.beginTransaction();
         session.saveOrUpdate(student);
-        session.getTransaction().commit(); 
+        session.getTransaction().commit();
+
+
     }
 
     @Override
     public void update(Student student) {
+        Session session = factory.getCurrentSession();
         session.beginTransaction();
         session.saveOrUpdate(student);
         session.getTransaction().commit(); 
@@ -46,6 +57,7 @@ public class HibernateStudentDal implements IStudentDal{
 
     @Override
     public void delete(Student student) {
+       Session session = factory.getCurrentSession();
         session.beginTransaction();
         Student studenttoDelete = session.get(Student.class,student.getId());
         session.delete(studenttoDelete);
@@ -54,6 +66,7 @@ public class HibernateStudentDal implements IStudentDal{
 
     @Override
     public Student getById(int id) {
+  Session session = factory.getCurrentSession();
         session.beginTransaction();
         Student student = session.get(Student.class, id);
         return student;
