@@ -14,20 +14,17 @@ import org.hibernate.cfg.Configuration;
  *
  * @author talme
  */
-public class HibernateStudentDal implements IStudentDal{
-    
+public class HibernateStudentDal implements IStudentDal {
+
     private SessionFactory factory = new Configuration()
-                    .configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(Student.class)
-                    .buildSessionFactory();
-    
-    
+            .configure("hibernate.cfg.xml")
+            .addAnnotatedClass(Student.class)
+            .buildSessionFactory();
 
     public HibernateStudentDal() {
-     
+
     }
-    
-    
+
     @Override
     public List<Student> getAll() {
         Session session = factory.getCurrentSession();
@@ -44,7 +41,6 @@ public class HibernateStudentDal implements IStudentDal{
         session.saveOrUpdate(student);
         session.getTransaction().commit();
 
-
     }
 
     @Override
@@ -52,24 +48,24 @@ public class HibernateStudentDal implements IStudentDal{
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         session.saveOrUpdate(student);
-        session.getTransaction().commit(); 
+        session.getTransaction().commit();
     }
 
     @Override
     public void delete(Student student) {
-       Session session = factory.getCurrentSession();
+        Session session = factory.getCurrentSession();
         session.beginTransaction();
-        Student studenttoDelete = session.get(Student.class,student.getId());
+        Student studenttoDelete = session.get(Student.class, student.getId());
         session.delete(studenttoDelete);
         session.getTransaction().commit();
     }
 
     @Override
     public Student getById(int id) {
-  Session session = factory.getCurrentSession();
+        Session session = factory.getCurrentSession();
         session.beginTransaction();
         Student student = session.get(Student.class, id);
         return student;
     }
-    
+
 }

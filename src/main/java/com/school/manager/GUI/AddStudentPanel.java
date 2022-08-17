@@ -193,7 +193,9 @@ public class AddStudentPanel extends javax.swing.JPanel {
         boolean isEexist = false;
         List<Student> students = studentManager.getAll();
         for (Student student : students) {
-            if (student.getSchoolNo() == Integer.parseInt(noText.getText())) {
+            
+            try {
+                if (student.getSchoolNo() == Integer.parseInt(noText.getText())) {
                 jLabel6.setText("There is a student for this informations");
                 DefaultTableModel model = new DefaultTableModel();
                 model.setColumnIdentifiers(new Object[]{"Name", "School No", "Department", "Country", "Overall Grade"});
@@ -203,6 +205,12 @@ public class AddStudentPanel extends javax.swing.JPanel {
                 isEexist = true;
                 break;
             }
+                
+            } catch (Exception e) {
+                jLabel6.setText("Invalid input !!");
+                break;
+            }
+
         }
         if (!isEexist) {
             try {
