@@ -21,16 +21,16 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "ID")
-    int id;
+    public int id;
     @Column(name= "schoolno")
-    int schoolNo;
+    public int schoolNo;
     @Column(name= "ovreallGrade")
     double overallGrade;
     
     @Column(name= "name")
-    String name;
+    public String name;
     @Column(name= "department")
-    String department;
+    public String department;
     @Column(name= "country")
     String coutry;
 

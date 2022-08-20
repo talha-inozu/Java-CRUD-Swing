@@ -17,11 +17,12 @@ import javax.swing.table.DefaultTableModel;
 public class AddStudentPanel extends javax.swing.JPanel {
 
     private StudentManager studentManager;
-
+    private javax.swing.JPanel cardPanel;
     /**
      * Creates new form AddStudentPanel
      */
-    public AddStudentPanel(StudentManager studentManager) {
+    public AddStudentPanel(StudentManager studentManager,javax.swing.JPanel cardPanel) {
+        this.cardPanel = cardPanel;
         initComponents();
         this.studentManager = studentManager;
 
@@ -57,6 +58,7 @@ public class AddStudentPanel extends javax.swing.JPanel {
             }
         };
         jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1920, 1080));
 
@@ -123,6 +125,13 @@ public class AddStudentPanel extends javax.swing.JPanel {
                     .addContainerGap(24, Short.MAX_VALUE)))
         );
 
+        jButton2.setText("Back To Main Menu");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,11 +164,17 @@ public class AddStudentPanel extends javax.swing.JPanel {
                         .addGap(256, 256, 256)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(438, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(23, 23, 23)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
@@ -226,12 +241,23 @@ public class AddStudentPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MainPanel mainPanel = new MainPanel(cardPanel);
+        cardPanel.removeAll();
+        cardPanel.repaint();
+        cardPanel.revalidate();
+        cardPanel.add(mainPanel);
+        cardPanel.repaint();
+        cardPanel.revalidate();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField countryText;
     private javax.swing.JTextField departmentText;
     private javax.swing.JTextField gradeText;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

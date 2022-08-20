@@ -107,7 +107,7 @@ public class UI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
        for(User user:users){
-           System.err.println();
+           
        if(user.getMail().trim().equals(jTextField1.getText().trim()) && user.getPassword().trim().equals(jTextField2.getText().trim())){
        MainPage mainPage = new MainPage();
        mainPage.setVisible(true);
