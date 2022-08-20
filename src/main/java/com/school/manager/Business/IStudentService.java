@@ -17,4 +17,5 @@ public interface IStudentService {
 	void update(Student student);
 	void delete(Student student);
 	Student getById(int id);
+        List<Student> searchBySchoolNo(int schoolNo);
 }

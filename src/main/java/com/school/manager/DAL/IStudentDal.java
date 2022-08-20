@@ -16,6 +16,7 @@ public interface IStudentDal {
 	void update(Student student);
 	void delete(Student student);
 	Student getById(int id);
+        List<Student> searchBySchoolNo(int schoolNo);
     
     
     
