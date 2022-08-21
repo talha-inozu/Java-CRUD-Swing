@@ -18,4 +18,5 @@ public interface IStudentService {
 	void delete(Student student);
 	Student getById(int id);
         List<Student> searchBySchoolNo(int schoolNo);
+        List<Student> searchByName(String name);
 }

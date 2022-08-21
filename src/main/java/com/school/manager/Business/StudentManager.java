@@ -52,5 +52,10 @@ public class StudentManager implements IStudentService{
     public List<Student> searchBySchoolNo(int schoolNo) {
         return this.studentDal.searchBySchoolNo(schoolNo);
     }
+
+    @Override
+    public List<Student> searchByName(String name) {
+        return this.studentDal.searchByName(name);
+    }
     
 }

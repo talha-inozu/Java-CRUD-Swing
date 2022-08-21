@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.school.manager.GUI;
+
 import javax.swing.table.DefaultTableModel;
 import com.school.manager.Business.StudentManager;
 import com.school.manager.Entities.Student;
@@ -14,20 +15,22 @@ import java.util.List;
  * @author talme
  */
 public class SearchPanel extends javax.swing.JPanel {
+
     private int chooseMenuFlag = 0;
     private StudentManager studentManager;
     private javax.swing.JPanel cardPanel;
+
     /**
      * Creates new form SearchPanel
      */
-    public SearchPanel(StudentManager studentManager,javax.swing.JPanel cardPanel) {
+    public SearchPanel(StudentManager studentManager, javax.swing.JPanel cardPanel) {
         this.cardPanel = cardPanel;
         this.studentManager = studentManager;
         initComponents();
         choice1.add("Select method");
         Field[] fields = Student.class.getFields();
-        for(Field field:fields){
-        choice1.add(field.getName());
+        for (Field field : fields) {
+            choice1.add(field.getName());
         }
     }
 
@@ -192,9 +195,11 @@ public class SearchPanel extends javax.swing.JPanel {
     private void choice1İtemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choice1İtemStateChanged
         jTextField1.setVisible(true);
         jButton1.setVisible(true);
-        if(chooseMenuFlag == 0){choice1.remove(0);}
+        if (chooseMenuFlag == 0) {
+            choice1.remove(0);
+        }
         chooseMenuFlag = 1;
-        
+
     }//GEN-LAST:event_choice1İtemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -208,19 +213,33 @@ public class SearchPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        List<Student> searchedStudents = studentManager.searchBySchoolNo(Integer.parseInt(jTextField1.getText()));
+
+        List<Student> searchedStudents = null;
+        switch (choice1.getSelectedIndex()) {
+            case 1:
+                searchedStudents = studentManager.searchBySchoolNo(Integer.parseInt(jTextField1.getText()));
+                break;
+            case 2:
+                searchedStudents = studentManager.searchByName(jTextField1.getText());
+                break;
+            default:
+                
+
+        }
+
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setColumnIdentifiers(new Object[]{"Name","School No","Overall Grade", "Department", "Country"});
+        model.setColumnIdentifiers(new Object[]{"Name", "School No", "Overall Grade", "Department", "Country"});
         model.setRowCount(0);
-        for(Student student:searchedStudents){ 
-        model.addRow(new Object[]{student.getName(),String.valueOf(student.getSchoolNo()),String.valueOf(student.getOverallGrade()), student.getDepartment(), student.getCoutry()});}
+        for (Student student : searchedStudents) {
+            model.addRow(new Object[]{student.getName(), String.valueOf(student.getSchoolNo()), String.valueOf(student.getOverallGrade()), student.getDepartment(), student.getCoutry()});
+        }
         jTable1.setModel(model);
         jTable1.repaint();
         jPanel2.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-         jTextField1.setText("");
+        jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
 

@@ -77,5 +77,13 @@ public class HibernateStudentDal implements IStudentDal {
         return students;
     }
 
+    @Override
+    public List<Student> searchByName(String name) {
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        List<Student> students = session.createQuery("from Peoples people where people.name LIKE '%"+name+"%'").getResultList();
+        session.getTransaction().commit();
+        return students;    }
+
 
 }
