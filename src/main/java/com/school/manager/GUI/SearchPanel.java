@@ -226,7 +226,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 
 
         }
-
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setColumnIdentifiers(new Object[]{"Name", "School No", "Overall Grade", "Department", "Country"});
         model.setRowCount(0);
